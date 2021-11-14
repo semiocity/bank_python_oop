@@ -32,7 +32,7 @@ class CompteSimple:
         self.__solde -= somme
 
     def editer_releve(self):
-        print ("Relevé du compte simple de {}".format (self.titulaire))
+        print ("Relevé du compte simple numéro {} de {}".format (self.numero, self.titulaire))
         print ("Solde : ",self.solde, "\n")
 
 
@@ -51,7 +51,7 @@ class CompteCourant(CompteSimple):
         self.historique.append ("Débit: {}".format(somme))
 
     def editer_releve(self):
-        print ("Relevé du compte courant de {}".format (self.titulaire))
+        print ("Relevé du compte courant numéro {} de {}".format (self.numero, self.titulaire))
         for operation in self.historique:
             print (operation)
         print ("Solde : ",self.solde, "\n")
@@ -83,6 +83,8 @@ class Banque:
             compte.debiter (prelevement)
 
 
+# Comme je ne sais pas tester un affichage avec pytest,
+# je crée un jeu de valeurs dans le main afin de tester les fonctions correspondant
 def main():
     banque = Banque()
 
@@ -98,9 +100,9 @@ def main():
     # ouverture de comptes simples ou comptes courants (1 sur 2)
     for i, nouveau_client in enumerate(base_clients):
         if i%2 == 0:
-            banque.ouvrir_compte_client(nouveau_client, randint(10, 500))
+            banque.ouvrir_compte_client(nouveau_client, 1000)
         else:
-            banque.ouvrir_compte_courant(nouveau_client, randint(10, 500))
+            banque.ouvrir_compte_courant(nouveau_client, 1000)
 
 
     # operations aléatoires sur les comptes
